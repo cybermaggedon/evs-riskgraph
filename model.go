@@ -213,17 +213,21 @@ func DescribeRiskElements(ev *pb.Event) ([]*Entity, []*Edge, error) {
 			a_e = a_e.AddNetwork(network)
 		}
 		
-		r_e := NewResource(v.Value).AddTime(tm).AddCount(1).
-			AddType(v.Type)
-		k_e := NewRisk(v.Category).AddTime(tm).AddCount(1)
+		r_e := NewResource(v.Value).
+			AddTime(tm).AddCount(1).AddType(v.Type)
+		k_e := NewRisk(v.Category).
+			AddTime(tm).AddCount(1)
 
 		entities = append(entities, a_e)
 		entities = append(entities, r_e)
 		entities = append(entities, k_e)
 
-		ar_e := NewActorResource(actor, v.Value)
-		ak_e := NewActorRisk(actor, v.Category)
-		rk_e := NewResourceRisk(v.Value, v.Category)
+		ar_e := NewActorResource(actor, v.Value).
+			AddTime(tm).AddCount(1)
+		ak_e := NewActorRisk(actor, v.Category).
+			AddTime(tm).AddCount(1)
+		rk_e := NewResourceRisk(v.Value, v.Category).
+			AddTime(tm).AddCount(1)
 
 		edges = append(edges, ar_e)
 		edges = append(edges, ak_e)
