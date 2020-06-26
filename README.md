@@ -31,7 +31,7 @@ You also need a Pulsar exchange, being fed by events from Cyberprobe.
 ### Installing
 
 The easiest way is to use the containers we publish to Docker hub.
-See https://hub.docker.com/r/cybermaggedon/evs-riskgaffer
+See https://hub.docker.com/r/cybermaggedon/evs-riskgraph
 
 ```
   docker pull docker.io/cybermaggedon/evs-riskgraph:<VERSION>
