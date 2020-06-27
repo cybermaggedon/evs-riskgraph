@@ -93,12 +93,12 @@ func (e *Edge) ToGaffer() map[string]interface{} {
 
 // Gaffer entity object
 type Entity struct {
-	Vertex string
-	Group  string
-	Count  uint64
-	Time   TimestampSet
-	Network     string
-	Type string
+	Vertex  string
+	Group   string
+	Count   uint64
+	Time    TimestampSet
+	Network string
+	Type    string
 }
 
 // Create a new entity object
@@ -122,13 +122,13 @@ func (e *Entity) AddCount(count uint64) *Entity {
 	return e
 }
 
-// 
+//
 func (e *Entity) AddNetwork(network string) *Entity {
 	e.Network = network
 	return e
 }
 
-// 
+//
 func (e *Entity) AddType(val string) *Entity {
 	e.Type = val
 	return e
@@ -174,22 +174,22 @@ func (e *Entity) ToGaffer() map[string]interface{} {
 	}
 
 	return map[string]interface{}{
-		"class":  ENTITY,
-		"group":  e.Group,
-		"vertex": e.Vertex,
+		"class":      ENTITY,
+		"group":      e.Group,
+		"vertex":     e.Vertex,
 		"properties": props,
 	}
 }
 
 // Helper functions to create various entities.
-func NewActor(address string) *Entity  { return NewEntity(address, "actor") }
+func NewActor(address string) *Entity { return NewEntity(address, "actor") }
 func NewResource(v string) *Entity    { return NewEntity(v, "resource") }
-func NewRisk(v string) *Entity  { return NewEntity(v, "risk") }
+func NewRisk(v string) *Entity        { return NewEntity(v, "risk") }
 
 // Helper functions to create various edges
 func NewActorResource(src, dest string) *Edge { return NewEdge(src, dest, "actorresource") }
-func NewActorRisk(s, d string) *Edge       { return NewEdge(s, d, "actorrisk") }
-func NewResourceRisk(s, d string) *Edge    { return NewEdge(s, d, "resourcerisk") }
+func NewActorRisk(s, d string) *Edge          { return NewEdge(s, d, "actorrisk") }
+func NewResourceRisk(s, d string) *Edge       { return NewEdge(s, d, "resourcerisk") }
 
 // Takes an event and outputs the riskgraph elements.
 func DescribeRiskElements(ev *pb.Event) ([]*Entity, []*Edge, error) {
@@ -212,7 +212,7 @@ func DescribeRiskElements(ev *pb.Event) ([]*Entity, []*Edge, error) {
 		if network != "" {
 			a_e = a_e.AddNetwork(network)
 		}
-		
+
 		r_e := NewResource(v.Value).
 			AddTime(tm).AddCount(1).AddType(v.Type)
 		k_e := NewRisk(v.Category).

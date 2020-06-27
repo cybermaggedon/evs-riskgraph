@@ -35,11 +35,11 @@ type Config struct {
 // Create a new configuration with default values
 func NewConfig() *Config {
 
-	bc := evs.NewConfig("evs-riskgraph", "ioc")
+	bc := evs.NewConfig("evs-riskgraph", "withioc", nil)
 
 	c := &Config{
 		Config:                  bc,
-		url:                     "http://riskgraph:8080/rest/v2",
+		url:                     "http://gaffer-risk:8080/rest/v2",
 		max_idle_conns:          50,
 		max_idle_conns_per_host: 5,
 		connect_timeout:         5 * time.Second,
