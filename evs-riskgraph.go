@@ -27,7 +27,7 @@ func NewRiskGraph(c *Config) *RiskGraph {
 	}
 
 	var err error
-	t.EventSubscriber, err = evs.NewEventSubscriber(t.Name, t.Input, t)
+	t.EventSubscriber, err = evs.NewEventSubscriber(t, t)
 	if err != nil {
 		log.Fatal(err)
 	}
